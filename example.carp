@@ -1,0 +1,23 @@
+(load "./fifo-carp.carp")
+
+(Debug.sanitize-addresses)
+
+(defn maybe-str [maybe]
+  (match maybe
+    (Maybe.Just int) (str int)
+    Maybe.Nothing    @"Nothing"))
+
+(defn main []
+  (let-do [queue (FifoInt.init)]
+    (FifoInt.push &queue 1)
+    (FifoInt.push &queue 2)
+    (FifoInt.push &queue 3)
+    (println* (maybe-str (FifoInt.pop &queue)))
+    (println* (maybe-str (FifoInt.pop &queue)))
+    (println* (maybe-str (FifoInt.pop &queue)))
+    (println* (maybe-str (FifoInt.pop &queue)))
+    (FifoInt.push &queue 1)
+    (FifoInt.push &queue 2)
+    (FifoInt.push &queue 3)
+    (FifoInt.delete queue)))
+
