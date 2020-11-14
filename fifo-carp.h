@@ -21,7 +21,7 @@ void fifo_int_push(FifoInt *fifo, int val) {
     .val = val,
     .next = NULL
   };
-  ListNodeInt *nodeptr = CARP_MALLOC(sizeof(FifoInt));
+  ListNodeInt *nodeptr = CARP_MALLOC(sizeof(ListNodeInt));
   assert(nodeptr);
   *nodeptr = node;
   if (!fifo->first) {
@@ -85,7 +85,7 @@ void fifo_socket_push(FifoSocket *fifo, Socket socket) {
     .val = socket,
     .next = NULL
   };
-  ListNodeSocket *nodeptr = CARP_MALLOC(sizeof(FifoSocket));
+  ListNodeSocket *nodeptr = CARP_MALLOC(sizeof(ListNodeSocket));
   assert(nodeptr);
   *nodeptr = node;
   if (!fifo->first) {
